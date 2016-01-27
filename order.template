@@ -1,0 +1,7 @@
+{% extends "base.template" %}
+{% block content %}
+
+   <div class="jumbotron text-center">
+      <h1>Order Page TODO</h1>
+   </div>
+        {% endblock %}

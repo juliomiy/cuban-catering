@@ -18,6 +18,18 @@ import os
 import webapp2
 import jinja2
 
+# using the code as a scratch pad which I don't like but who will care
+
+GOOGLEIDENTITYKEY = "AIzaSyCuZ6ZoiLR_3ObwVV8d667l4GSad3b4NLI"
+'''
+Of course will change this before going live
+OAuth client
+Here is your client ID
+68222603480-7levoqto214hk8gprshg2rl1h300npso.apps.googleusercontent.com
+Here is your client secret
+PNxq831VpDrFx944A0oLf9A
+'''
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -30,7 +42,28 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
         #self.response.write('Hello world!')
 
+class ContactHandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {}
+        template = JINJA_ENVIRONMENT.get_template('contact.template')
+        self.response.write(template.render(template_values))
+
+class MenuHandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {}
+        template = JINJA_ENVIRONMENT.get_template('menu.template')
+        self.response.write(template.render(template_values))
+
+class OrderHandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {}
+        template = JINJA_ENVIRONMENT.get_template('order.template')
+        self.response.write(template.render(template_values))
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/home', MainHandler),
+    ('/menu', MenuHandler),
+    ('/contact', ContactHandler),
+    ('/order', OrderHandler),
 ], debug=True)
