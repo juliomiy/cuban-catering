@@ -1,0 +1,8 @@
+{
+  "clientId": "68222603480-7k3n0494csbfhuiqhf5sdp8tf23kea7v.apps.googleusercontent.com",
+  "projectId": "cuban-catering",
+  "serviceAccountEmail": "favio-s-cuban-mom@cuban-catering.iam.gserviceaccount.com",
+  "serviceAccountPrivateKeyFile": "cuban-catering-abc6e1659146.p12"
+  "widgetUrl": "http://localhost:8000/widget",
+  "cookieName": "gtoken"
+}

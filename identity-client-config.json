@@ -1,0 +1,10 @@
+{
+  "widgetUrl": "http://localhost:8000/widget",
+  "signInSuccessUrl": "http://localhost:8000",
+  "signOutUrl": "http://localhost:8000",
+  "oobActionUrl": "http://localhost:8000",
+  "apiKey": "AIzaSyCuZ6ZoiLR_3ObwVV8d667l4GSad3b4NLI",
+  "siteName": "Favio's Mom",
+  "signInOptions": ["password","microsoft","google","facebook","paypal","twitter","yahoo","aol"]
+}
+
