@@ -60,10 +60,24 @@ class OrderHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('order.template')
         self.response.write(template.render(template_values))
 
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+       template_values = {}
+       template = JINJA_ENVIRONMENT.get_template('about.template')
+       self.response.write(template.render(template_values))
+
+class PricingHandler(webapp2.RequestHandler):
+    def get(self):
+       template_values = {}
+       template = JINJA_ENVIRONMENT.get_template('pricing.template')
+       self.response.write(template.render(template_values))
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/home', MainHandler),
     ('/menu', MenuHandler),
     ('/contact', ContactHandler),
     ('/order', OrderHandler),
+    ('/pricing', PricingHandler),
+    ('/about', AboutHandler),
 ], debug=True)

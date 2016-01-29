@@ -1,4 +1,7 @@
 {% extends "base.template" %}
+{% block title %}
+Favio's Mom Menu Page
+{% endblock %}
 {% block content %}
 
 
