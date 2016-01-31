@@ -18,6 +18,9 @@ import os
 import webapp2
 import jinja2
 
+# temporary in main controller
+from datamodel.menuitem import MenuItem
+
 # using the code as a scratch pad which I don't like but who will care
 
 GOOGLEIDENTITYKEY = "AIzaSyCuZ6ZoiLR_3ObwVV8d667l4GSad3b4NLI"
@@ -38,38 +41,41 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('index.template')
+        template = JINJA_ENVIRONMENT.get_template('/templates/index.template')
         self.response.write(template.render(template_values))
         #self.response.write('Hello world!')
 
 class ContactHandler(webapp2.RequestHandler):
     def get(self):
         template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('contact.template')
+        template = JINJA_ENVIRONMENT.get_template('/templates/contact.template')
         self.response.write(template.render(template_values))
 
 class MenuHandler(webapp2.RequestHandler):
     def get(self):
+        menu_items = MenuItem()
+        menu_items.put()
+
         template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('menu.template')
+        template = JINJA_ENVIRONMENT.get_template('/templates/menu.template')
         self.response.write(template.render(template_values))
 
 class OrderHandler(webapp2.RequestHandler):
     def get(self):
         template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('order.template')
+        template = JINJA_ENVIRONMENT.get_template('/templates/order.template')
         self.response.write(template.render(template_values))
 
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
        template_values = {}
-       template = JINJA_ENVIRONMENT.get_template('about.template')
+       template = JINJA_ENVIRONMENT.get_template('/templates/about.template')
        self.response.write(template.render(template_values))
 
 class PricingHandler(webapp2.RequestHandler):
     def get(self):
        template_values = {}
-       template = JINJA_ENVIRONMENT.get_template('pricing.template')
+       template = JINJA_ENVIRONMENT.get_template('/templates/pricing.template')
        self.response.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([
