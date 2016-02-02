@@ -20,6 +20,8 @@ import jinja2
 
 # temporary in main controller
 from datamodel.menuitem import MenuItem
+from controller.testhandler import TestHandler
+
 
 # using the code as a scratch pad which I don't like but who will care
 
@@ -37,6 +39,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -86,4 +90,5 @@ app = webapp2.WSGIApplication([
     ('/order', OrderHandler),
     ('/pricing', PricingHandler),
     ('/about', AboutHandler),
+    ('/test', TestHandler),
 ], debug=True)

@@ -8,10 +8,15 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+- url: /apple-touch-icon-180x180\.png
+  static_files: apple-touch-icon-180x180.png
+  upload: apple-touch-icon-180x180\.png
 - url: /stylesheets
   static_dir: stylesheets
 - url: /javascript
   static_dir: javascript
+- url: /images
+  static_dir: images
 - url: .*
   script: main.app
 
@@ -20,3 +25,7 @@ libraries:
   version: "2.5.2"
 - name: jinja2
   version: latest
+
+builtins:
+- remote_api: on
+

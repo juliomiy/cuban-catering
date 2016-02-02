@@ -1,9 +1,9 @@
 {% extends "/templates/base.template" %}
 {% block title %}
-Favio's Mom About Us Page
+Favio's Mom Test Page
 {% endblock %}
 {% block content %}
    <div class="jumbotron text-center">
-      <h1>About Page TODO</h1>
+      <h1>Test Page TODO</h1>
    </div>
         {% endblock %}
