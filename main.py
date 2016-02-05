@@ -17,11 +17,17 @@
 import os
 import webapp2
 import jinja2
+import logging
 
 # temporary in main controller
 from datamodel.menuitem import MenuItem
 from controller.testhandler import TestHandler
-
+from controller.abouthandler import AboutHandler
+from controller.contacthandler import ContactHandler
+from controller.mainhandler import MainHandler
+from controller.menuhandler import MenuHandler
+from controller.orderhandler import OrderHandler
+from controller.pricinghandler import PricingHandler
 
 # using the code as a scratch pad which I don't like but who will care
 
@@ -35,60 +41,39 @@ Here is your client secret
 PNxq831VpDrFx944A0oLf9A
 '''
 
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+def handle_404(request, response, exception):
+    template_values = {}
+    logging.exception(exception)
+    template = JINJA_ENVIRONMENT.get_template('/templates/404.template')
+    response.set_status(404)
+    response.write(template.render(template_values))
+    #response.write('Oops! I could swear this page was here!')
 
+def handle_500(request, response, exception):
+    template_values = {}
+    logging.exception(exception)
+    template = JINJA_ENVIRONMENT.get_template('/templates/500.template')
+    response.set_status(404)
+    response.write(template.render(template_values))
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('/templates/index.template')
-        self.response.write(template.render(template_values))
-        #self.response.write('Hello world!')
-
-class ContactHandler(webapp2.RequestHandler):
-    def get(self):
-        template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('/templates/contact.template')
-        self.response.write(template.render(template_values))
-
-class MenuHandler(webapp2.RequestHandler):
-    def get(self):
-        menu_items = MenuItem()
-        menu_items.put()
-
-        template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('/templates/menu.template')
-        self.response.write(template.render(template_values))
-
-class OrderHandler(webapp2.RequestHandler):
-    def get(self):
-        template_values = {}
-        template = JINJA_ENVIRONMENT.get_template('/templates/order.template')
-        self.response.write(template.render(template_values))
-
-class AboutHandler(webapp2.RequestHandler):
-    def get(self):
-       template_values = {}
-       template = JINJA_ENVIRONMENT.get_template('/templates/about.template')
-       self.response.write(template.render(template_values))
-
-class PricingHandler(webapp2.RequestHandler):
-    def get(self):
-       template_values = {}
-       template = JINJA_ENVIRONMENT.get_template('/templates/pricing.template')
-       self.response.write(template.render(template_values))
+logging.basicConfig(format='%(asctime)s %(message)s', filename='/logs/access.log',level=logging.DEBUG)
+logging.debug('This message should go to the log file')
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/home', MainHandler),
-    ('/menu', MenuHandler),
-    ('/contact', ContactHandler),
-    ('/order', OrderHandler),
-    ('/pricing', PricingHandler),
-    ('/about', AboutHandler),
-    ('/test', TestHandler),
+    ('/', MainHandler, "home"),
+    ('/home', MainHandler, "home"),
+    ('/menu', MenuHandler, "menu"),
+    ('/contact', ContactHandler, "contact"),
+    ('/order', OrderHandler, "order"),
+    ('/pricing', PricingHandler, "pricing"),
+    ('/about', AboutHandler, "about"),
+    ('/test',  TestHandler, "test"),
 ], debug=True)
+app.error_handlers[404] = handle_404
+app.error_handlers[500] = handle_500

@@ -1,4 +1,4 @@
-{% extends "/templates/base.template" %}
+{% extends "base.template" %}
 {% block title %}
 Favio's Mom Order Page
 {% endblock %}

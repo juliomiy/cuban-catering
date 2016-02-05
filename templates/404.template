@@ -1,9 +1,9 @@
-{% extends "base.template" %}
+{% extends "/templates/base.template" %}
 {% block title %}
-Favio's Mom Contact Us Page
+Favio's Mom About Us Page
 {% endblock %}
 {% block content %}
    <div class="jumbotron text-center">
-      <h1>Contact Page TODO</h1>
+      <h1>404 Page TODO</h1>
    </div>
         {% endblock %}
