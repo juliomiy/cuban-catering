@@ -1,0 +1,9 @@
+{% extends "base.template" %}
+{% block title %}
+Favio's Mom Article Page
+{% endblock %}
+{% block content %}
+   <div class="jumbotron text-center">
+      <h1>Article Page TODO</h1>
+   </div>
+        {% endblock %}

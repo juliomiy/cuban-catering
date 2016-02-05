@@ -10,13 +10,13 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 """
 
-class PricingHandler(BaseHandler):
+class AdminHandler(BaseHandler):
 
     def get(self):
         template_values = {}
         #template = JINJA_ENVIRONMENT.get_template('test.template')
-        self.render_template("pricing.template", template_values)
+        self.render_template("admin.template", template_values)
         #self.response.write(template.render(template_values))
 
     def __init__(self, *args, **kwargs):
-        super(PricingHandler, self).__init__(*args, **kwargs)
+        super(AdminHandler, self).__init__(*args, **kwargs)

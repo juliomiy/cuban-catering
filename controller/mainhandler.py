@@ -10,10 +10,10 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 """
 
-class AboutHandler(BaseHandler):
+class MainHandler(BaseHandler):
     def get(self):
        template_values = {}
-       self.render_template("about.template", template_values)
+       self.render_template("index.template", template_values)
 
     def __init__(self, *args, **kwargs):
-        super(AboutHandler, self).__init__(*args, **kwargs)
+        super(MainHandler, self).__init__(*args, **kwargs)

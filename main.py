@@ -20,7 +20,6 @@ import jinja2
 import logging
 
 # temporary in main controller
-from datamodel.menuitem import MenuItem
 from controller.testhandler import TestHandler
 from controller.abouthandler import AboutHandler
 from controller.contacthandler import ContactHandler
@@ -28,7 +27,9 @@ from controller.mainhandler import MainHandler
 from controller.menuhandler import MenuHandler
 from controller.orderhandler import OrderHandler
 from controller.pricinghandler import PricingHandler
-
+from controller.adminhandler import AdminHandler
+from admin.loadtables import LoadDatabase
+from controller.articlehandler import ArticleHandler
 # using the code as a scratch pad which I don't like but who will care
 
 GOOGLEIDENTITYKEY = "AIzaSyCuZ6ZoiLR_3ObwVV8d667l4GSad3b4NLI"
@@ -74,6 +75,9 @@ app = webapp2.WSGIApplication([
     ('/pricing', PricingHandler, "pricing"),
     ('/about', AboutHandler, "about"),
     ('/test',  TestHandler, "test"),
+    ('/admin', AdminHandler, "admin"),
+    ('/admin/loaddatabase', LoadDatabase().run(True)),
+    ('/article', ArticleHandler, "article"),
 ], debug=True)
 app.error_handlers[404] = handle_404
 app.error_handlers[500] = handle_500

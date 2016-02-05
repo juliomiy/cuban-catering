@@ -1,4 +1,5 @@
 from google.appengine.ext import ndb
+import logging
 
 class BaseModel(ndb.Model):
 
@@ -8,6 +9,7 @@ class BaseModel(ndb.Model):
 
     def get_all(self, entity):
         query = "select * from %s" % entity
+        logging.debug(query)
         qry = ndb.gql(query)
         assert isinstance(qry, object)
         return qry
