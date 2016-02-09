@@ -1,16 +1,26 @@
 {% extends "base.template" %}
+{% block meta %}
 {% block title %}
 Favio's Mom Menu Page
 {% endblock %}
+{% endblock %}
+
 {% block content %}
-
-
    <div class="jumbotron text-center">
       <h1>Menu Page TODO</h1>
-      <ul id="menu">
-      {% for key, item in menuitems.iteritems() %}
-        <li><a href="{{ item.long_description }}">{{ item.short_description }}</a></li>
-      {% endfor %}
-      </ul>
+
    </div>
-        {% endblock %}
+   <div class="container-fluid text-center bg-grey">
+   <div class="row text-center">
+     <ul id="menu">
+       {% for key, item in menuitems.iteritems() %}
+         <div class="col-sm-4">
+            <div class="thumbnail">
+               <li><a href="/article/{{ item.article_uri }}"><img class="img-thumbnail" src="/images/{{ item.image }}" height="300" width="400" alt="{{ item.name }}">{{ item.short_description }}</a></li>
+            </div>
+        </div>
+       {% endfor %}
+     </ul>
+      </div>
+   </div>
+{% endblock %}

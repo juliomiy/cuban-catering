@@ -6,4 +6,17 @@ Favio's Mom About Us Page
    <div class="jumbotron text-center">
       <h1>About Page TODO</h1>
    </div>
-        {% endblock %}
+   <!-- Container (About Section) -->
+   <div class="container-fluid">
+     <h2>About Company Page</h2>
+     <h4>Lorem ipsum..</h4>
+     <p>{{ article.body }}</p>
+     <button class="btn btn-default btn-lg">Get in Touch</button>
+   </div>
+
+   <div class="container-fluid bg-grey">
+     <h2>Our Values</h2>
+     <h4><strong>MISSION:</strong> Our mission lorem ipsum..</h4>
+     <p><strong>VISION:</strong> Our vision Lorem ipsum..
+   </div>
+{% endblock %}

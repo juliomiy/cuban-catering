@@ -8,13 +8,16 @@
     <link rel="icon" type="x-icon" href="/favicon.ico"/>
     <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/javascript/jquery.min.js"></script>
     <script src="/javascript/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block byline %}
+    <meta name="author" content="Favio's Mom">
+    {% endblock %}
     {% block meta %}
-    <title>{% block title %}{% endblock %}</title>
     <meta name="description" content="Cuban Cuisine Catering, Cuban Sandwiches, Frijolles Negros, Tostones">
     {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
@@ -27,7 +30,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Logo</a>
+      <a class="navbar-brand" href="/"><img class="img-responsive" src="/images/logo_495x609.png" width="150px" height="200px" alt="Logo"/></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">

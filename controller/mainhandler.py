@@ -12,7 +12,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class MainHandler(BaseHandler):
     def get(self):
-       template_values = {}
+       template_values = {"company_name": "Favio's Mom","specialize_in": "All things Cuban Cusine, when you want it"}
        self.render_template("index.template", template_values)
 
     def __init__(self, *args, **kwargs):

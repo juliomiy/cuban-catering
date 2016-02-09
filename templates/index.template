@@ -4,8 +4,8 @@ Favio's Mom Home Page
 {% endblock %}
 {% block content %}
    <div class="jumbotron text-center">
-      <h1>Company</h1>
-      <p>We specialize in blablabla</p>
+      <h1>{{ company_name }}</h1>
+      <p>{{ specialize_in }}</p>
       <form class="form-inline">
         <input type="email" class="form-control" size="50" placeholder="Email Address">
         <button type="button" class="btn btn-danger">Subscribe</button>
@@ -43,5 +43,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 {% block gallery %}
 {% include "gallery_fragment.template" ignore missing %}
 {% endblock %}
-
-        {% endblock %}
+{% endblock %}
+{% block footer %}
+{{ super() }}
+{% endblock %}

@@ -13,3 +13,10 @@ class BaseModel(ndb.Model):
         qry = ndb.gql(query)
         assert isinstance(qry, object)
         return qry
+
+    def normalize_string_to_uri(self,uri,encode = True):
+        if encode and uri:
+            normalized_uri = uri.replace(" ","_")
+        elif not encode and uri:
+            normalized_uri = uri.replace("_"," ")
+        return normalized_uri

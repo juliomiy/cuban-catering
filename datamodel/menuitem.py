@@ -29,6 +29,8 @@ class MenuItem(BaseModel):
     is_available = ndb.BooleanProperty(required = True, indexed = True)
     is_vegetarian = ndb.BooleanProperty(required = True, indexed = False)
     url_article = ndb.StringProperty(required = False, indexed = False)
+    article_key = ndb.StringProperty(required = False, indexed = True)
+    article_title = ndb.StringProperty(required = False, indexed = False)
     calories = ndb.IntegerProperty(required = False)
     #unit_price = ndb.FloatProperty(required = True)
     #unit_type = ndb.StringProperty(choices=selection, required=True)
@@ -43,7 +45,7 @@ class MenuItem(BaseModel):
 
     def get_all_available(self):
         """
-        get all menu items that are currently available - this will filter by the is_available property
+        get all menu items that are currently available - this will be filtered by the is_available property
         :return:
         """
         resp_dict = {}
@@ -56,11 +58,23 @@ class MenuItem(BaseModel):
             short_description = item.short_description
             calories = item.calories
             url_article = item.url_article
-            dict = {"name":  "test",
-                    "is_available" : is_available,
-                    "is_vegetarian": is_vegetarian,
-                    "long_description": long_description,
-                    "short_description": short_description
+
+            images = item.images
+            if images and images.__len__() > 0:
+                image = images[0].filename
+
+            article_uri = self.normalize_string_to_uri(item.article_title,True)
+            dict = {"name":  item.name,
+                    "is_available" : item.is_available,
+                    "is_vegetarian": item.is_vegetarian,
+                    "calories": item.calories,
+                    "long_description": item.long_description,
+                    "short_description": item.short_description,
+                    "url_article": item.url_article,
+                    "article_key": item.article_key,
+                    "article_uri": article_uri,
+                    "article_title": item.article_title,
+                    "image": image
                     }
             resp_dict[item.key] = dict
         return resp_dict
