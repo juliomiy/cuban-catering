@@ -1,0 +1,13 @@
+{% extends "base.template" %}
+{% block title %}
+Favio's Mom API Page
+{% endblock %}
+{% block content %}
+   <div class="jumbotron text-center">
+      <h1>API Page TODO</h1>
+   </div>
+   <!-- Container (About Section) -->
+   <div class="container-fluid">
+     <h2>API Page</h2>
+   </div>
+ {% endblock %}
