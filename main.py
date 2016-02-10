@@ -16,6 +16,7 @@
 #
 import os
 import webapp2
+from webapp2_extras import routes
 import jinja2
 import logging
 
@@ -30,6 +31,7 @@ from controller.pricinghandler import PricingHandler
 from controller.adminhandler import AdminHandler
 from admin.loadtables import LoadDatabase
 from controller.articlehandler import ArticleHandler
+from controller.apihandler import APIHandler
 # using the code as a scratch pad which I don't like but who will care
 
 GOOGLEIDENTITYKEY = "AIzaSyCuZ6ZoiLR_3ObwVV8d667l4GSad3b4NLI"
@@ -66,7 +68,11 @@ def handle_500(request, response, exception):
 logging.basicConfig(format='%(asctime)s %(message)s', filename='/logs/access.log',level=logging.DEBUG)
 logging.debug('This message should go to the log file')
 
-app = webapp2.WSGIApplication([
+app = webapp2.WSGIApplication(
+    [
+        routes.DomainRoute('<api>.localhost', [
+            webapp2.Route(r'/<version>/getcurrentlocation/', handler=APIHandler, handler_method='get_current_location', name='subdomain-home'),
+        ]),
     ('/', MainHandler, "home"),
     ('/home', MainHandler, "home"),
     ('/menu', MenuHandler, "menu"),
