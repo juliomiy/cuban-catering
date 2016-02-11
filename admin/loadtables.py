@@ -1,3 +1,4 @@
+import os.path
 from google.appengine.ext import ndb
 from datamodel.menuitem import MenuItem,MenuItemPrice,MenuItemImage
 from datamodel.order import Order
@@ -25,6 +26,7 @@ class LoadDatabase:
                                   short_description = "Cuban Sandwich",
                                   long_description  = "Placeholder for Long Description",
                                   name = "Cuban Sandwich",
+                                  article_title = "Cuban Sanwich",
                                   images = image_list
                                   )
         cuban_sandwich.put()
@@ -40,6 +42,7 @@ class LoadDatabase:
                                   short_description = "Croqueta Ham",
                                   long_description =' Placeholder for Long Description',
                                   name = "Ham Croqueta",
+                                  article_title = "Ham Croqueta",
                                   images = image_list
                                   )
         croqueta_ham.put()
@@ -55,6 +58,7 @@ class LoadDatabase:
                                   short_description = "Frijolles Negros",
                                   long_description =' Placeholder for Long Description',
                                   name = "Frijolles Negros",
+                                  article_title = "Frijolles Negros",
                                   images = image_list
                                   )
         frijolles.put()
@@ -88,7 +92,14 @@ class LoadDatabase:
                              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."""
         about_page.put()
 
-    def load_orders(self, dopurge=False):
+        article = Article()
+        article.title = "Cuban Sandwich"
+        article.byline = "Favio's Mom"
+        article.short_description = "Cuban Sandwich"
+        article.body = self.load_article_body_from_file("admin/articles/cuban_sandwich.txt")
+        article.put()
+
+    def load_orders(self, dopurge=True):
         if dopurge:
             self.purge_entity(Order())
 
@@ -96,6 +107,18 @@ class LoadDatabase:
         ndb.delete_multi(
             entity.query().fetch(keys_only=True)
         )
+
+    def load_article_body_from_file(self, filename):
+        """
+
+        :param filename: containing the Body text
+        :return: body content
+        """
+        data = None
+        if os.path.exists(filename):
+            with open(filename, 'r') as myfile:
+                data=myfile.read().replace('\n', '')
+        return data
 
     def run(self, dopurge=False):
         self.load_menuitems(dopurge)

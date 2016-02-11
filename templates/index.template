@@ -17,9 +17,49 @@ Favio's Mom Home Page
 <!-- Add Google Maps -->
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-var myCenter = new google.maps.LatLng(42.2528649, -73.790959);
+/* Temporary for testing */
+/*var germantown = {"lat": 42.1342562,
+                     "long":  -73.871242
+                 };
+var hudson = {"lat": 42.251476,
+                        "long": -73.7862366
+             };
+var livingston = {"lat": 42.1398114,
+                   "long": -73.7870721
+             };
+var location = [];
+*/
+/*
+var location = { germantown, hudson, livingston} ;
+location[2] = hudson;
+location[3] = livingston;
+*/
+var myCenter;
+var url = "http://api.localhost:8080/v1/getcurrentlocation/";
+var cnt = 0;
+
+function myUpdate() {
+
+   $.getJSON( url, function( coordinates ) {
+       lat = coordinates.location.lat;
+       lng = coordinates.location.long;
+       myCenter = new google.maps.LatLng(lat, lng);
+    });
+
+   initialize();
+   /*setTimeout( myUpdate, 50000 );*/
+}
+
+
+/* End Temporary */
+
 
 function initialize() {
+if (cnt === 0)
+{
+        myCenter = new google.maps.LatLng(42.2528649, -73.790959);
+        cnt++;
+}
 var mapProp = {
 center:myCenter,
 zoom:12,
@@ -35,6 +75,7 @@ position:myCenter,
 });
 
 marker.setMap(map);
+setTimeout( myUpdate, 50000 );
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
