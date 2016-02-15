@@ -21,6 +21,8 @@
     {% endblock %}
 </head>
 <body>
+   <!-- Part 1: Wrap all page content here -->
+<div id="wrap">
     <div id="content">{% block content %}{% endblock %}</div>
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -43,17 +45,23 @@
     </div>
   </div>
 </nav>
-    <div id="footer">
-        {% block footer %}
-           <footer class="container-fluid text-center">
+</div>
+{% block footer %}
+
+    <div id="footer" class="navbar-bottom">
+         <div class="container">
+           <footer class="container-fluid text-center" >
               <a href="#myPage" title="To Top">
                      <span class="glyphicon glyphicon-chevron-up"></span>
               </a>
+            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png" alt="Check out with PayPal" />
             <p>Bootstrap Theme Made By <a href="http://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
-            &copy; Copyright 2016 by <a href="http://domain.invalid/">you</a>.
+            &copy; Copyright 2016 by <a href="http://faviosmom.com/">Favio's Mom</a>.
+
+
            </footer>
-        {% endblock %}
     </div>
+   </div>
+{% endblock %}
 </body>
 </html>
-~

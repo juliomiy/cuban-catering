@@ -21,24 +21,33 @@ class Article(BaseModel):
         :param title of article
         :return: dictionary of values for use by template
         """
-        resp_dict = {}; response = None
-        qry = Article.query(Article.title == title)
 
-        for item in qry:
-            """ title is usually stored as a free text which is not optimal for a uri
-            call normalize method to replace various characters , predominantly space to
-            valid uri character
-            """
-            article_uri = self.normalize_string_to_uri(item.title,True)
-            response = { "title": item.title,
-                         "short_description": item.short_description,
-                         "body": item.body,
-                         "byLine": item.byline,
-                         "article_key": item.key,
-                         "article_uri": article_uri
-                        }
+        resp_dict = {}; response = None
+        try:
+            qry = Article.query(Article.title == title)
+
+            for item in qry:
+                """ title is usually stored as a free text which is not optimal for a uri
+                call normalize method to replace various characters , predominantly space to
+                valid uri character
+                """
+                article_uri = self.normalize_string_to_uri(item.title,True)
+                response = { "title": item.title,
+                             "short_description": item.short_description,
+                             "body": item.body,
+                             "byLine": item.byline,
+                             "article_key": item.key,
+                             "article_uri": article_uri
+                            }
+                self.logger.debug(response.__str__())
+        except Exception as ex:
+            template = "An exception of type {0} occured. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            self.logger.error(message)
 
         if response is not None and isinstance(response,dict):
             resp_dict = response
+        else:
+            self.logger.debug("Article with title %s not found",title)
         return resp_dict
 

@@ -4,7 +4,7 @@ Favio's Mom Article Page
 {% endblock %}
 {% block content %}
    <div class="jumbotron text-center">
-      <h1>Article Page TODO</h1>
+      <h1>{{ article.title }}</h1>
    </div>
    <div class="container-fluid">
      <p>{{ article.body }}</p>

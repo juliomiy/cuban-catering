@@ -4,6 +4,7 @@ runtime: python27
 api_version: 1
 threadsafe: yes
 
+
 handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
@@ -30,4 +31,18 @@ libraries:
 
 builtins:
 - remote_api: on
+
+inbound_services:
+- mail
+- xmpp_message
+- xmpp_presence
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^(.*/)?\.bak$
+- ^(.*/)?\.log$
 

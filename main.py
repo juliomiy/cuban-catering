@@ -19,6 +19,9 @@ import webapp2
 from webapp2_extras import routes
 import jinja2
 import logging
+import logging.config
+import ast
+
 
 # temporary in main controller
 from controller.testhandler import TestHandler
@@ -65,8 +68,16 @@ def handle_500(request, response, exception):
     response.set_status(404)
     response.write(template.render(template_values))
 
-logging.basicConfig(format='%(asctime)s %(message)s', filename='/logs/access.log',level=logging.DEBUG)
-logging.debug('This message should go to the log file')
+#logging.basicConfig(format='%(asctime)s %(message)s', filename='/logs/access.log',level=logging.DEBUG)
+#logging.debug('This message should go to the log file')
+
+try:
+   with open('config/logger.dict') as f: config = ast.literal_eval(f.read())
+   logging.config.dictConfig(config)
+except Exception as ex:
+   template = "An exception of type {0} occured. Arguments:\n{1!r}"
+   message = template.format(type(ex).__name__, ex.args)
+   print message
 
 app = webapp2.WSGIApplication(
     [

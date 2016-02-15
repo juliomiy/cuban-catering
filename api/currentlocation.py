@@ -1,6 +1,7 @@
 """TODO flesh this out. Currently a mockup to test a concept of location
 """
 import random
+class LocationServices:
 def get_current_location():
     location_dict = {}
     #Germantown

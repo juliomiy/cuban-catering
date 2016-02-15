@@ -1,0 +1,42 @@
+{ 
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': { 
+        'standard': { 
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': { 
+        'default': { 
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+        'file': {
+            'level': 'DEBUG',
+            #'class': 'logging.handlers.RotatingFileHandler',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+            #'filename': '/var/log/cuban-catering/myapp2.log',
+            #'maxBytes': 1024,
+            #'backupCount': 3
+        },
+    },
+    'loggers': { 
+        'default': {
+            'handlers': ['default'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+        'file': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'django.request': { 
+            'handlers': ['default'],
+            'level': 'WARN',
+            'propagate': False
+        },
+    } 
+}
